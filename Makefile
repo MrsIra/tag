@@ -19,5 +19,18 @@ build/random.o: src/random.c
 build/print.o: src/print.c
 	$(COMPILER) $(FLAGS) -MMD -c -o $@ $<
 
+-include test/*.d
+
+bin/main-test: test/main.o test/test.o
+	$(COMPILER) $(FLAGS) -o $@ $^
+
+test/main.o: test/main.c
+	$(COMPILER) -I thirdparty -I src $(FLAGS) -MMD -c -o $@ $<
+
+test/test.o: test/test.c
+	$(COMPILER) -I thirdparty -I src $(FLAGS) -MMD -c -o $@ $<
+
+
+
 clean:
 	rm build/*
