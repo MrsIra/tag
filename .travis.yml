@@ -5,4 +5,4 @@ compiler:
 dist: xenial
 
 script: 
-	- make && make test && bin/main-test
+  - make && make test && bin/main-test
