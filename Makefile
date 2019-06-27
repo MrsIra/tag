@@ -8,9 +8,11 @@ all: bin/main
 
 -include build/*.d
 
-bin/main: build/main.o 
+bin/main: build/main.o build/CheckWin.o
 	$(COMPILER) $(FLAGS) -o $@ $^
 build/main.o: src/main.c
+	$(COMPILER) $(FLAGS) -MMD -c -o $@ $<
+build/CheckWin.o: src/CheckWin.c
 	$(COMPILER) $(FLAGS) -MMD -c -o $@ $<
 
 clean:
