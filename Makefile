@@ -8,13 +8,15 @@ all: bin/main
 
 -include build/*.d
 
-bin/main: build/main.o build/CheckWin.o build/random.o
+bin/main: build/main.o build/CheckWin.o build/random.o build/print.o
 	$(COMPILER) $(FLAGS) -o $@ $^
 build/main.o: src/main.c
 	$(COMPILER) $(FLAGS) -MMD -c -o $@ $<
 build/CheckWin.o: src/CheckWin.c
 	$(COMPILER) $(FLAGS) -MMD -c -o $@ $<
 build/random.o: src/random.c
+	$(COMPILER) $(FLAGS) -MMD -c -o $@ $<
+build/print.o: src/print.c
 	$(COMPILER) $(FLAGS) -MMD -c -o $@ $<
 
 clean:
